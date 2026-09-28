@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "simplio3d": {
+      "type": "http",
+      "url": "https://app.simplio3d.ai/mcp"
+    }
+  }
+}

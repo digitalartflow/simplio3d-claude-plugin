@@ -1,0 +1,27 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "simplio3d",
+  "displayName": "Simplio3D",
+  "version": "1.0.0",
+  "description": "Audit, explain and safely edit your Simplio3D 3D product configurators from Claude: projects, options, conditional rules, 3D parts, materials, pricing and publish readiness. Connects to your own Simplio3D workspace and is read-only unless you grant write access.",
+  "author": {
+    "name": "Simplio3D",
+    "email": "contact@simplio3d.com",
+    "url": "https://www.simplio3d.com"
+  },
+  "homepage": "https://app.simplio3d.ai/docs/mcp",
+  "repository": "https://github.com/digitalartflow/simplio3d-claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "simplio3d",
+    "3d",
+    "product-configurator",
+    "cpq",
+    "configure-price-quote",
+    "ecommerce",
+    "materials",
+    "pricing",
+    "conditional-logic",
+    "mcp"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "simplio3d",
+  "owner": {
+    "name": "Simplio3D",
+    "email": "contact@simplio3d.com",
+    "url": "https://www.simplio3d.com"
+  },
+  "metadata": {
+    "description": "The Simplio3D plugin for Claude: work with your 3D product configurators from Claude and Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "simplio3d",
+      "source": ".",
+      "description": "Audit, explain and safely edit your Simplio3D 3D product configurators: options, rules, 3D parts, materials, pricing and publish readiness.",
+      "category": "ecommerce",
+      "tags": ["3d", "cpq", "product-configurator", "ecommerce"]
+    }
+  ]
+}
