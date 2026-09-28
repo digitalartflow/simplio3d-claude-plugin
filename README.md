@@ -1,4 +1,4 @@
-<img src="assets/simplio3d-icon.png" alt="Simplio3D" width="72" height="72">
+![Simplio3D](assets/simplio3d-icon.png)
 
 # Simplio3D for Claude
 
