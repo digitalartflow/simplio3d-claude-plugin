@@ -25,8 +25,8 @@ Codes returned by `validate_project` and `get_project_health`. "Safe fix" means 
 | category-block-missing-category | A Select Material block in "From Category" mode has no category, so it shows no swatches. | Choose a material category. |
 | numeral-flat-range | A number input's minimum equals its maximum, so the shopper can't change it. | Widen the range. |
 | numeral-scaling-no-targets / numeral-scaling-no-axis | A number input is meant to resize the model but names no parts or no axis. | Add the parts and axis, or turn scaling off. |
-| numeral-scaling-contradictory-part | The same part is listed both as stretching and as fixed. | Keep hardware (handles, hinges) in the fixed list only. |
-| numeral-scaling-default-pivot | Parts scale around the model's centre, so they grow in both directions. | Informational; check the pivot if growth should be one-sided. |
+| numeral-scaling-not-dimension | A number input has scaling parts and an axis, but it is a "quantity", and only "dimension" parameters move geometry. | Set the parameter's value type to dimension. |
+| numeral-position-part-not-target | A part is marked "fixed" (or "scale") but is not in the scaling targets, so it neither stretches nor moves. | Add it to the targets too; "fixed" then makes it move with the size instead of stretching. |
 | visibility-hides-own-parts | A variant hides the very parts that represent it, so choosing it shows nothing new. | Use `set_variant_visibility` with `exclusiveParts` so each option hides the others' parts. |
 | visibility-exclusive-disjoint | Every option hides a completely separate set of parts, so no option ever hides another option's geometry and alternatives stay visible together. | Same as above. |
 | visibility-mixed-mode | A visibility setting names both whole objects and parts; the part names are ignored. | Use one mode. |
@@ -59,6 +59,10 @@ Codes returned by `validate_project` and `get_project_health`. "Safe fix" means 
 | material-missing-pbr-data | A variant has a material id but no saved material data, so it renders as a plain colour. | Re-assign the material. |
 | material-variant-target-drift | Variants of one material option paint different parts; usually every finish should paint the same parts. | Align the targets. |
 | material-color-variant-missing | A variant selects a colour that isn't one of its colour options, so the first colour is shown instead. | Re-pick the colour. |
+| transmission-fallback-opaque | A gemstone or glass material's see-through look is solid, so AR, older embedded viewers and slow devices show an opaque object. Warning. | Make the material Transparent with an opacity below 100 (the Material Editor offers a one-click fix). |
+| transmission-thickness-zero | A glass material has wall thickness 0 (a warning); for gemstones it is informational, because stones are traced inside their mesh. | Give glass a small wall thickness. |
+| material-snapshot-stale | An option holds an older copy of its library material, so Preview and the Share view show the old look. A warning when gemstone settings differ. | Open the project in the editor and save, or assign the material again. |
+| transmission-device-fallback | The project uses gemstone or glass materials; lists which devices show their see-through look instead (or that quality is set to the see-through look only). Information. | Nothing to fix; choose the rendering quality in Project Settings → Lighting → Gems & Glass if needed. |
 
 ## Pricing and SKUs
 

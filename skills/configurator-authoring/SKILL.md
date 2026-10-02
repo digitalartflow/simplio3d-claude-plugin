@@ -31,13 +31,15 @@ For anything beyond a single small edit, summarise the plan in the user's words 
 |---|---|
 | New option block (dropdown, select-material, checkbox, toggle-switch, thumbnail-selector, carousel, number-input, text-input, section-header…) | `create_option_block` |
 | Rename, show/hide or reorder blocks | `update_option_block`, `reorder_option_blocks` |
+| Reorder the options inside a block (variants, number-input parameters or modules) | `reorder_variants` — pass every option once, in the new order |
 | Block settings (layout, thumbnails, defaults, per-type options) | `configure_option_block`. It accepts only the settings that block type supports; when it refuses a field it names the tool that owns it. |
 | Add or edit a variant | `create_variant`, `update_variant`. A variant's value never changes once created, so pricing and rules stay linked. |
 | Variant label, thumbnail, description | `set_variant_properties` |
 | Choosing a variant shows or hides 3D parts | `set_variant_visibility` (see `references/visibility-and-targeting.md`) |
 | Choosing a variant applies a material | `assign_material` (see the materials skill) |
-| Show or hide a block, variant, 3D object, 3D part or material depending on other selections | `create_conditional_rule`, `update_conditional_rule` (see `references/conditional-logic.md`) |
-| A number input that resizes the model | `get_model_pivots` first, then `set_numeral_variants` |
+| A material or colour applied automatically, with no choice for the shopper | `set_fixed_materials` on a Fixed Material block (see the materials skill) |
+| Show or hide a block, variant, 3D object, 3D part or material depending on other selections — including which modules a shopper placed | `create_conditional_rule`, `update_conditional_rule` (see `references/conditional-logic.md`) |
+| A number input that resizes the model | `set_numeral_variants` with a `dimension` parameter: list every part that changes in `targetPartNames`, and mark parts that should move instead of stretch (handles, legs) as `fixed` in `positionParts` (see `references/visibility-and-targeting.md`) |
 | Text or an uploaded image printed onto the model | `set_text_input_targets`, `set_file_upload_targets` |
 | Modules that snap together | `configure_modular_settings`, `create_modular_variant`, `update_modular_variant`, `set_snap_side_constraint` (see `references/modular.md`) |
 | Delete a block, variant, rule or module | `delete_option_block`, `delete_variant`, `delete_conditional_rule`, `delete_modular_variant`. These are proposals the user approves in Simplio3D. |

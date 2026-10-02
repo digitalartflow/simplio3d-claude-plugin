@@ -61,12 +61,15 @@ Tool errors arrive as `[category] message`.
 - Say "proposed" for those, give the approval link, and never say they were applied. There is no tool that approves a change, and you must not try to find a way around approval.
 - `list_pending_changes` and `get_pending_change` show what is waiting and its status: `awaiting-approval`, `applied`, `canceled` (the user rejected it) or `expired`.
 - Other edits apply straight away. Most can be undone from Simplio3D → Dashboard → AI Changes.
+- `list_ai_changes` shows the history: proposals and their status (including ones that failed to apply), applied changes and whether they can still be undone, and recent AI activity. Use it to answer "what did the AI change?".
+- `withdraw_pending_change` withdraws a proposal you made in this conversation's connection when the user changes their mind. It cannot approve anything.
+- `undo_ai_change` prepares an undo of an applied change. It is itself a proposal: give the user the approval link. If the plan warns that the project changed afterwards, tell the user those later edits would be reverted too.
 
 ## What this connector never does
 
 It never returns passwords, API keys, store credentials or email (SMTP) passwords, and it cannot publish a project, connect a store or email customers. If the user asks for any of those, don't guess a value or a workaround; tell them where each is managed:
 
-- Shopify and WooCommerce connections: Simplio3D → Dashboard → Integrations. Shopify is usually connected by installing the Simplio3D app, so there may be no secret to look up at all.
+- Shopify and WooCommerce connections: Simplio3D → Dashboard → Integrations. Dashboard → Integrations → Shopify is only for connecting the merchant's own Shopify app (Client ID + Secret). The Simplio3D app for Shopify is installed from the Shopify App Store and managed from the Shopify admin (Apps → Simplio3D) — the dashboard never installs it, so there may be no secret to look up at all.
 - A project's email (SMTP) settings: the project editor → Project Settings → Email. The password itself belongs to their email provider.
 - AI connections like this one: Dashboard → Integrations → AI Connections.
 - Publishing: the project editor's **Share** dialog.
