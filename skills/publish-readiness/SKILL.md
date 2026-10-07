@@ -33,7 +33,7 @@ If `start_workflow` is available, start the `prepare-for-publishing` workflow (r
 | Form | A Submit or Add to Cart button exists; required fields make sense. |
 | Display | The options sidebar is on when there are options to show. |
 | Sharing | Sharing is on (or the user knows how to turn it on); restrictions are intended. |
-| Store | If selling through a store, the project is linked to a product. |
+| Store | If selling through a store, the project is linked to a product. A project with advanced pricing steps sold through the WordPress plugin needs plugin 2.2.0 or later. |
 
 ## Verdict
 

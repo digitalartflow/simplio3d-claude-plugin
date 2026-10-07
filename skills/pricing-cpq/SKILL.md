@@ -1,6 +1,6 @@
 ---
 name: pricing-cpq
-description: Explain, calculate and change pricing in a Simplio3D configurator (configure-price-quote). Use when the user asks how a Simplio3D project is priced, what a configuration costs, to calculate or check a price, about price groups, price tables, pricing formulas, variables, tax or currency, about missing or duplicate SKUs, or asks to set, change or bulk-adjust prices or SKUs in Simplio3D.
+description: Explain, calculate and change pricing in a Simplio3D configurator (configure-price-quote). Use when the user asks how a Simplio3D project is priced, what a configuration costs, to calculate or check a price, about price groups, price tables, pricing formulas, variables, markup or margin, quantity tiers, discounts, setup or labor charges, shipping, tax or currency, about missing or duplicate SKUs, or asks to set, change or bulk-adjust prices or SKUs in Simplio3D.
 ---
 
 # Pricing and CPQ in Simplio3D
@@ -29,6 +29,18 @@ When a formula exists, only the blocks it references count toward the total. An 
 3. Report the total, the per-block breakdown and tax. `matchedBlockIds` lists the selections that affected the price; `unmatchedSelectionKeys` are selections that didn't (often simply options with no price, which is fine). If an option the user expected to cost extra is unmatched, say so. `hiddenOptionBlockIds` are options hidden by rules for this configuration; they don't count.
 4. Always pass on the `caveats` the tool returns. The server calculation is simplified: it may not apply every rule the live configurator applies (for example conditions on number ranges or modular connections). For a quote the customer will rely on, the user should confirm in the Simplio3D Preview.
 
+## Advanced pricing steps (Pro and Enterprise)
+
+Simplio3D builds every price in a fixed order: the formula gives the **unit price** → × the **order quantity** → **discounts** → **charges** → **shipping (freight)** → **tax**. Markup / margin blocks and per-unit tiers are part of the unit price; discount, charge, freight, tax and order-level tier blocks are applied in their own step and are never formula terms (`update_pricing_formula` refuses them).
+
+- `calculate_price` returns `cpq`: the itemized lines, the totals, and a **status** — `final`, `estimate` (the store checkout finalizes tax and shipping, or a tax exemption awaits review), `pending` (a quantity, a delivery choice or a tax rate is missing) or `quote-required`. Report the status and its reasons; never present a pending price as final. With several shipping options pass `freightChoice`.
+- **Never choose a tax rate.** Ask the user for the rate that applies to their business; Simplio3D never presets one. Never promise a tax exemption: only tax IDs the user has verified (the Tax block's private list) remove tax.
+- A one-time charge (setup fee) is charged once per order; a per-unit charge is multiplied by the quantity. Confirm which the user means.
+- Markup costs are private: the shopper only sees the resulting sell price. `get_pricing_blocks` shows each block's `stage` and `config`.
+- On Starter these blocks can't be created or changed (the tool explains this); existing ones keep pricing.
+- For a store checkout (Add to Cart), the store adds its own tax and shipping — Simplio3D sends the price after discounts and charges.
+- Selling a project with these steps through the Simplio3D WordPress plugin needs plugin version 2.2.0 or later; an older plugin cannot show the steps, so Simplio3D does not confirm that project's price for its WooCommerce cart (shoppers are offered a quote request instead). The Simplio3D app for Shopify updates its storefront blocks automatically.
+
 ## Find missing SKUs
 
 - `get_pricing_blocks` shows SKU counts per block. Compare them with the number of priced variants.
@@ -47,6 +59,8 @@ When a formula exists, only the blocks it references count toward the total. An 
 | The formula | `update_pricing_formula` |
 | Add, change or remove a pricing block | `create_pricing_block`, `update_pricing_block`, `delete_pricing_block` |
 | Remove dead price and SKU entries | `apply_safe_repairs` |
+| Markup / margin, quantity tiers, discounts, charges, shipping or tax (Pro and Enterprise) | `create_pricing_block` / `update_pricing_block` with `config` |
+| Let shoppers order a quantity | `set_order_quantity` |
 
 Before proposing:
 
