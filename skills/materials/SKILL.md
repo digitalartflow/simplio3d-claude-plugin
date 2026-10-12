@@ -1,6 +1,6 @@
 ---
 name: materials
-description: Find, reuse, create and assign materials in Simplio3D, including gemstones, glass and jewellery metals. Use when the user asks about their Simplio3D materials library, wants to add a finish, colour, fabric, wood, metal or gemstone option, asks to create or import a material or texture, assign a material to a variant or 3D part, set up lighting for jewellery, or asks why a material or stone looks flat, grey, hollow or wrong on a Simplio3D model.
+description: Find, reuse, create and assign materials in Simplio3D, including cut-out logos and labels, gemstones, glass and jewellery metals. Use when the user asks about their Simplio3D materials library, wants to add a finish, colour, fabric, wood, metal or gemstone option, asks to create or import a material or texture, assign a material to a variant or 3D part, set up lighting for jewellery, put a logo, label or sticker (a PNG with transparent areas) on a product, or asks why a material or stone looks flat, grey, hollow or wrong on a Simplio3D model, or why a logo cuts a square out of the image behind it.
 ---
 
 # Materials in Simplio3D
@@ -45,6 +45,17 @@ To remove a material from a variant but keep its target parts and colour swatche
 
 A Fixed Material block applies materials or plain colours automatically — the shopper never chooses. Use `set_fixed_materials` with entries of a library material id or a hex colour, a target model (or every model) and target meshes (or every mesh). `mode` is `replace` (default), `append` or `clear`. Unknown part names come back as warnings; group names are refused, because materials apply to meshes.
 
+## Logos, labels and stickers (cut-out)
+
+A logo, label, sticker or lettering on a PNG with transparent areas needs a **cut-out** material: pixels less opaque than the threshold are removed and hide nothing behind them, with crisp edges. A plain Transparent material shows what is behind its clear pixels but still covers its whole part for anything drawn after it — over an image the shopper uploads, a Transparent logo cuts a square out of that image.
+
+- **Create it:** `create_material` with the PNG as the base colour texture (`textureAssetId` of the image in the library) and `alphaCutoff` 0.01–1 (start at 0.5). Turn an existing material into one with `update_material` and `alphaCutoff`; `alphaCutoff: 0` removes it. Raise the threshold if a faint outline remains; lower it if thin strokes disappear.
+- **Assign it** to the logo's own part, just in front of the surface — usually a Fixed Material block (`set_fixed_materials`) for a permanent logo, or an option (`assign_material`) for an optional one.
+- **A "No logo" option:** hide the part with the option's visibility (`set_variant_visibility`) instead of an invisible (opacity 0) material — an invisible Transparent material still hides what is behind it.
+- Options and Fixed Material entries keep a copy of the material. After you change a material they already use, assign it again so they pick up the change (`validate_project` reports `material-snapshot-stale`).
+- A gemstone or glass material (light transmission on) can't be a cut-out — the change is refused.
+- Older storefront versions (WordPress plugin before 2.2.1) show a cut-out as see-through. There is no per-part draw-order or depth setting; cut-out is the supported way to stack a logo over another layer.
+
 ## Gemstones and glass
 
 A material can let light through: a faceted stone refracts, reflects inside and splits light into colours (fire); glass bends what is behind it.
@@ -62,6 +73,7 @@ A material can let light through: a faceted stone refracts, reflects inside and 
 
 - Flat grey or plain colour: the variant has no saved material data or its material was deleted (findings: variant-material-missing, material-missing-pbr-data). Re-assign it.
 - Nothing changes on the model: the target part names don't match the model, or they name a group rather than meshes. Check with `list_model_parts`.
+- A logo or label cuts a square out of the image behind it, or a hidden part still hides what is behind it: its material is Transparent (often opacity 99 or 0). Make it a cut-out (`alphaCutoff`), or hide the part with variant visibility.
 - Texture missing only in the published view but fine in the editor: ask the user to re-save the material in Simplio3D; that refreshes its texture links.
 
 Run `validate_project` to find every material problem in a project at once.

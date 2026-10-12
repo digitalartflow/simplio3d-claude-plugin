@@ -2,6 +2,10 @@
 
 All notable changes to the Simplio3D plugin for Claude. The plugin follows [semantic versioning](https://semver.org); the `version` in `.claude-plugin/plugin.json` is raised with every release.
 
+## 1.4.0 — October 12, 2026
+
+- The materials skill covers cut-out materials for logos, labels and stickers on a PNG with transparent areas (Simplio3D 1.15.2): `create_material` / `update_material` with `alphaCutoff` (0.01–1; 0 removes it), why a Transparent logo cuts a square out of an image the shopper uploads, hiding a "No logo" option with variant visibility instead of an invisible material, and assigning the material again so options pick up the change.
+
 ## 1.3.0 — October 7, 2026
 
 - The pricing skill covers the advanced pricing steps of Pro and Enterprise (Simplio3D 1.15.0): markup and margin from a private cost, quantity tiers, discounts, setup and labor charges, shipping options and tax — created with `create_pricing_block` / `update_pricing_block` and `config`, the order quantity with `set_order_quantity`, and the staged result and status returned by `calculate_price`. Tax rates are always the user's to give; exemptions are never promised.
