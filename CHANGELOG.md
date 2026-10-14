@@ -2,6 +2,15 @@
 
 All notable changes to the Simplio3D plugin for Claude. The plugin follows [semantic versioning](https://semver.org); the `version` in `.claude-plugin/plugin.json` is raised with every release.
 
+## 1.5.0 — October 14, 2026
+
+- Configurator authoring covers Edit Axis pivots (Simplio3D 1.17.0): number inputs now resize a part about its pivot — its own, else its group's or model's, else its origin in the 3D file — and parts set to "fixed" move from their group's or model's pivot. A part that grows the wrong way is fixed with `set_object_pivot` (a preset such as `right`, `center` or `bottom-front-right`) after checking the result with `get_model_pivots` and `preview`. One pivot on a group covers every part inside it. The earlier advice that the pivot does not affect resizing is withdrawn.
+- Audit finding codes for number inputs (Simplio3D 1.17.0): `numeral-scaling-axis-conflict` (two parameters resize the same part on the same axis and multiply), `numeral-zero-reference` (a resizing input's default is 0 or unset), `numeral-nonpositive-range` (it allows 0 or less) and `numeral-min-above-max`.
+
+## 1.4.1 — October 14, 2026
+
+- Audit finding `material-snapshot-stale`: the fix is to assign the material to the option again (or open the variant's Appearance section in the editor so it reloads the library material). Saving the project alone doesn't refresh the option's copy; the earlier advice said it did.
+
 ## 1.4.0 — October 12, 2026
 
 - The materials skill covers cut-out materials for logos, labels and stickers on a PNG with transparent areas (Simplio3D 1.15.2): `create_material` / `update_material` with `alphaCutoff` (0.01–1; 0 removes it), why a Transparent logo cuts a square out of an image the shopper uploads, hiding a "No logo" option with variant visibility instead of an invisible material, and assigning the material again so options pick up the change.
