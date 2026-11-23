@@ -69,7 +69,7 @@ Before proposing:
 
 After proposing, tell the user plainly:
 
-> Proposed: nothing has changed yet. Review and approve it in Simplio3D at <the approval link from the result> (or Dashboard → AI Changes). Proposals expire after about 15 minutes.
+> Proposed: nothing has changed yet. Review and approve it in Simplio3D at <the approval link from the result> (or Dashboard → AI Changes). It waits there for 7 days.
 
 `get_pending_change` shows its status: `awaiting-approval`, `applied` (the user approved it), `canceled` (the user rejected it) or `expired`. Only `applied` means prices changed. After `canceled` or `expired`, the prices are exactly as before; don't re-propose unless the user asks.
 

@@ -2,6 +2,11 @@
 
 All notable changes to the Simplio3D plugin for Claude. The plugin follows [semantic versioning](https://semver.org); the `version` in `.claude-plugin/plugin.json` is raised with every release.
 
+## 1.5.1 — November 23, 2026
+
+- Proposed changes now wait 7 days for the user's approval in Dashboard → AI Changes (Simplio3D 1.17.6), not about 15 minutes, and are checked against the project when the user approves them. The pricing and workspace skills say so.
+- The configurator audit explains `pricing-module-moved` (Simplio3D 1.17.3): a Unique Price or Price Table block still points at a modular block its modules moved out of, so those modules are not charged and never reach a cart. Re-pointing the block keeps its prices and SKUs but raises live totals, so the audit asks the user first.
+
 ## 1.5.0 — October 14, 2026
 
 - Configurator authoring covers Edit Axis pivots (Simplio3D 1.17.0): number inputs now resize a part about its pivot — its own, else its group's or model's, else its origin in the 3D file — and parts set to "fixed" move from their group's or model's pivot. A part that grows the wrong way is fixed with `set_object_pivot` (a preset such as `right`, `center` or `bottom-front-right`) after checking the result with `get_model_pivots` and `preview`. One pivot on a group covers every part inside it. The earlier advice that the pivot does not affect resizing is withdrawn.

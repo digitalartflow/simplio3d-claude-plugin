@@ -75,6 +75,7 @@ Codes returned by `validate_project` and `get_project_health`. "Safe fix" means 
 | pricing-variant-unpriced | A variant in a priced option has no price. | Add a price (a proposed change the user approves). |
 | pricing-variant-key-unknown | A price is stored for a variant that no longer exists. | **Safe fix.** |
 | sku-variant-missing | A SKU is stored for a variant that no longer exists. | **Safe fix.** |
+| pricing-module-moved | A Unique Price or Price Table block still points at a modular block its modules have moved out of: they aren't charged and never reach a cart. | **Decision.** Point the block at that block: prices and SKUs stay. Live totals rise, so confirm first. |
 | pricing-linked-block-missing | A pricing block links to a deleted option block. | Relink or delete the pricing block. |
 | formula-invalid / formula-block-missing | The pricing formula can't be parsed or references a deleted pricing block. | Fix the formula. |
 | formula-disabled-block | The formula uses a disabled pricing block, which counts as 0. | Enable the block or remove it from the formula. |

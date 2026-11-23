@@ -57,7 +57,7 @@ Tool errors arrive as `[category] message`.
 
 ## Changes and approvals
 
-- Simplio3D decides which changes need the user's approval. Pricing, SKUs, deletions, bulk edits and store changes come back with `status: "proposed"`, a `pendingChangeId` and an approval link (`approveUrl` or `approvalUrl`). Nothing changes until the user approves it in Simplio3D, at that link or in Dashboard → AI Changes. Proposals expire after about 15 minutes.
+- Simplio3D decides which changes need the user's approval. Pricing, SKUs, deletions, bulk edits and store changes come back with `status: "proposed"`, a `pendingChangeId` and an approval link (`approveUrl` or `approvalUrl`). Nothing changes until the user approves it in Simplio3D, at that link or in Dashboard → AI Changes. Proposals wait 7 days, and when the user approves one Simplio3D checks it against the project first: if the project changed in a way that affects it, the user reviews the updated change before it applies.
 - Say "proposed" for those, give the approval link, and never say they were applied. There is no tool that approves a change, and you must not try to find a way around approval.
 - `list_pending_changes` and `get_pending_change` show what is waiting and its status: `awaiting-approval`, `applied`, `canceled` (the user rejected it) or `expired`.
 - Other edits apply straight away. Most can be undone from Simplio3D → Dashboard → AI Changes.
