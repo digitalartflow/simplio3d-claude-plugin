@@ -20,6 +20,7 @@ This plugin is published by Simplio3D. It packages the Simplio3D connector with 
 - "Is the jersey configurator ready to publish?"
 - "How do I embed a configurator on my Shopify store?"
 - "Help me set up a modular shelving configurator."
+- "Put the player's name and number on the back of the jersey, and the club logo on the chest."
 
 You don't need to know tool names, project IDs or block IDs. Refer to projects, options and materials by the names you see in Simplio3D.
 
@@ -32,6 +33,7 @@ You don't need to know tool names, project IDs or block IDs. Refer to projects, 
 | Configurator authoring | Adds and edits option blocks, variants, conditional rules, 3D part visibility, resizing number inputs and modular (snap-together) modules. Always inspects the real model first and never guesses 3D part names. |
 | Pricing and CPQ | Explains pricing blocks and formulas, calculates prices with Simplio3D's server engine, finds missing SKUs, and proposes price or SKU changes for your approval. |
 | Materials | Finds and reuses library materials, imports curated or free materials, creates new ones and assigns them to the right 3D parts. |
+| UV mapping and placement regions | Moves, rotates and re-projects how textures sit on 3D parts, and places names, numbers, logos and artwork in named regions — always with a private preview first. Changes go to the draft until you publish them in Simplio3D. |
 | Publish readiness | Produces a Ready / Ready with warnings / Not ready verdict with a to-do list. It never publishes. |
 | Simplio3D help | Answers product questions from the official Simplio3D documentation and links the page it used. |
 
