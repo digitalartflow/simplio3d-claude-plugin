@@ -2,6 +2,10 @@
 
 All notable changes to the Simplio3D plugin for Claude. The plugin follows [semantic versioning](https://semver.org); the `version` in `.claude-plugin/plugin.json` is raised with every release.
 
+## 1.6.1 — November 27, 2026
+
+- Removed an unused SVG logo from the assets folder. Anthropic's plugin directory now accepts an SVG only as the plugin's own icon, so it held back versions 1.5.1 and 1.6.0; this release brings their changes (the UV mapping skill and 7-day approvals) to the directory. The skills themselves are unchanged.
+
 ## 1.6.0 — November 26, 2026
 
 - New skill: UV mapping and placement regions (Simplio3D 1.19.0 — on every Simplio3D server since November 26, 2026). It follows the tools' order — inspect with `get_uv_mappings` / `get_placement_regions`, preview with `preview_uv_change` and its private preview link, then save to the draft with `set_uv_mapping` / `set_placement_regions` — explains the conventions (UV right / down, clockwise rotation, model-space frames, square = box), which changes are proposals the user approves, `restore_uv_mapping`, and that shoppers see a change only after the user publishes it from the Share dialog. Jersey personalization uses the `set-up-personalization` workflow, whose preview link arrives whole in the question's `link`. A garment modelled as one mesh has no separate back panel for a preset to find; the skill says so and asks where the panel sits instead. When the tools aren't on the user's server, the skill says so instead of improvising.
